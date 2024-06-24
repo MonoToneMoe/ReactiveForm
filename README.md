@@ -9,3 +9,4 @@
 - [x] Add HTML for Form Component
 - [x] Check for validation on form
 - [x] Added submit validation for form
+- [] Add styling to form
