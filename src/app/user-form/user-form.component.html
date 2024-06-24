@@ -1,1 +1,86 @@
-<p>user-form works!</p>
+<div class="container">
+  <fieldset>
+    <legend>User Form</legend>
+    <form [formGroup]="userForm">
+      <div class="form-group">
+        <label for="fName">First Name</label>
+        <input type="text" class="form-control" id="fName" formControlName="fName" />
+      </div>
+      <div class="form-group">
+        <label for="lName">Last Name</label>
+        <input type="text" class="form-control" id="lName" formControlName="lName" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" formControlName="email" />
+      </div>
+      <div class="form-group">
+        <label for="date">Date of Birth</label>
+        <input type="date" class="form-control" id="date" formControlName="date" />
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" id="address" formControlName="address" />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" class="form-control" id="phone" formControlName="phone" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password" required />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </fieldset>
+
+  <div>{{userForm.value | json}}</div>
+    <div> Dirty: {{userForm.dirty}}</div>
+    <div> Touched: {{userForm.touched}}</div>
+    <div> Pristine: {{userForm.pristine}}</div>
+    <div> Valid: {{userForm.valid}}</div>
+    <div>
+      First Name - Touched: {{ userForm.get('fName')?.touched }},
+      Dirty: {{ userForm.get('fName')?.dirty }},
+      Valid: {{ userForm.get('fName')?.valid }}
+    </div>
+    <div>
+      Last Name - Touched: {{ userForm.get('lName')?.touched }},
+      Dirty: {{ userForm.get('lName')?.dirty }},
+      Valid: {{ userForm.get('lName')?.valid }}
+    </div>
+    <div>
+      Email - Touched: {{ userForm.get('email')?.touched }},
+      Dirty: {{ userForm.get('email')?.dirty }},
+      Valid: {{ userForm.get('email')?.valid }}
+    </div>
+    <div>
+      Date of Birth - Touched: {{ userForm.get('date')?.touched }},
+      Dirty: {{ userForm.get('date')?.dirty }},
+      Valid: {{ userForm.get('date')?.valid }}
+    </div>
+    <div>
+      Address - Touched: {{ userForm.get('address')?.touched }},
+      Dirty: {{ userForm.get('address')?.dirty }},
+      Valid: {{ userForm.get('address')?.valid }}
+    </div>
+    <div>
+      Phone Number - Touched: {{ userForm.get('phone')?.touched }},
+      Dirty: {{ userForm.get('phone')?.dirty }},
+      Valid: {{ userForm.get('phone')?.valid }}
+    </div>
+    <div>
+      Password - Touched: {{ userForm.get('password')?.touched }},
+      Dirty: {{ userForm.get('password')?.dirty }},
+      Valid: {{ userForm.get('password')?.valid }}
+    </div>
+    <div>
+      Confirm Password - Touched: {{ userForm.get('confirmPassword')?.touched }},
+      Dirty: {{ userForm.get('confirmPassword')?.dirty }},
+      Valid: {{ userForm.get('confirmPassword')?.valid }}
+    </div>
+</div>
