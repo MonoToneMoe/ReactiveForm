@@ -1,7 +1,7 @@
 <div class="container">
   <fieldset>
     <legend>User Form</legend>
-    <form [formGroup]="userForm">
+    <form [formGroup]="userForm" (ngSubmit)="submitForm()">
       <div class="form-group">
         <label for="fName">First Name</label>
         <input type="text" class="form-control" id="fName" formControlName="fName" />
@@ -25,6 +25,9 @@
       <div class="form-group">
         <label for="phone">Phone Number</label>
         <input type="tel" class="form-control" id="phone" formControlName="phone" />
+        <div *ngIf="userForm.get('phone')?.errors && userForm.get('phone')?.touched">
+          <div *ngIf="userForm.get('phone')?.hasError('invalidPhone')">Invalid phone number format. Use (123) 456-7890.</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
