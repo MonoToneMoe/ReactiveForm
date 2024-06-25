@@ -1,4 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '~flowbite/css/flowbite.css';
+
+body {
+    background-color: #B6C7AA;
+}
