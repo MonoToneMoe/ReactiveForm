@@ -16,26 +16,20 @@ function dateValidator(control: FormControl): { [key: string]: boolean } | null 
   return null; // No validation error
 }
 
-function phoneValidator(control: AbstractControl): ValidationErrors | null {
-  // Regular expression to match (123) 456-7890 format
+function phoneValidator(control: any): { [key: string]: boolean } | null {
   const PHONE_REGEX = /^\(\d{3}\) \d{3}-\d{4}$/;
-
-  // Check if the control value matches the pattern
   if (!PHONE_REGEX.test(control.value)) {
-    return { 'invalidPhone': true }; // Return validation error if not matched
+    return { 'invalidPhone': true };
   }
-  return null; // No validation error
+  return null;
 }
 
 function passwordValidator(control: FormControl): { [key: string]: boolean } | null {
-  // Regular expression to enforce password policy
-  const PASSWORD_REGEX = /^(?=.*[A-Z])(?=.*\d)(?=.*[?!@#$%^&*])[A-Za-z\d?!@#$%^&*]+$/;
-
-  // Check if the control value matches the pattern
+  const PASSWORD_REGEX = /^(?=.*[A-Z])(?=.*\d)(?=.*[?!@#$%^&*])[A-Za-z\d?!@#$%^&*]{15,}$/;
   if (!PASSWORD_REGEX.test(control.value)) {
-    return { 'invalidPassword': true }; // Return validation error if not matched
+    return { 'invalidPassword': true };
   }
-  return null; // No validation error
+  return null;
 }
 
 function passwordMatchValidator(control: FormGroup): ValidationErrors | null {
@@ -48,6 +42,7 @@ function passwordMatchValidator(control: FormGroup): ValidationErrors | null {
   }
   return null; // No validation error
 }
+
 
 @Component({
   selector: 'app-user-form',
@@ -75,6 +70,32 @@ export class UserFormComponent implements OnInit {
       }, { validator: passwordMatchValidator })
     });
   };
+
+  formatPhoneNumber(event: any) {
+    let input = event.target.value.replace(/\D/g, '').substring(0, 10);
+    const area = input.substring(0, 3);
+    const middle = input.substring(3, 6);
+    const last = input.substring(6, 10);
+
+    if (input.length > 6) {
+      event.target.value = `(${area}) ${middle}-${last}`;
+    } else if (input.length > 3) {
+      event.target.value = `(${area}) ${middle}`;
+    } else if (input.length > 0) {
+      event.target.value = `(${area}`;
+    }
+
+    this.userForm.get('phone')?.setValue(event.target.value, { emitEvent: false });
+  }
+
+  allowOnlyNumbers(event: any) {
+    const pattern = /[0-9]/;
+    const inputChar = String.fromCharCode(event.charCode);
+
+    if (!pattern.test(inputChar)) {
+      event.preventDefault(); // Prevents input if not a number
+    }
+  }
 
   submitForm() {
     if(this.userForm.invalid) {

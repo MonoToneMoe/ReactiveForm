@@ -5,26 +5,45 @@
       <div class="form-group">
         <label for="fName">First Name</label>
         <input type="text" class="form-control" id="fName" formControlName="fName" />
+        <div *ngIf="userForm.get('fName')?.errors && userForm.get('fName')?.touched">
+          <div *ngIf="userForm.get('fName')?.hasError('required')">First Name is required.</div>
+          <div *ngIf="userForm.get('fName')?.hasError('maxlength')">First Name cannot exceed 100 characters.</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="lName">Last Name</label>
         <input type="text" class="form-control" id="lName" formControlName="lName" />
+        <div *ngIf="userForm.get('lName')?.errors && userForm.get('lName')?.touched">
+          <div *ngIf="userForm.get('lName')?.hasError('required')">Last Name is required.</div>
+          <div *ngIf="userForm.get('lName')?.hasError('maxlength')">Last Name cannot exceed 100 characters.</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
         <input type="text" class="form-control" id="email" formControlName="email" />
+        <div *ngIf="userForm.get('email')?.errors && userForm.get('email')?.touched">
+          <div *ngIf="userForm.get('email')?.hasError('required')">Email is required.</div>
+          <div *ngIf="userForm.get('email')?.hasError('email')">Invalid email format.</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="date">Date of Birth</label>
         <input type="date" class="form-control" id="date" formControlName="date" />
+        <div *ngIf="userForm.get('date')?.errors && userForm.get('date')?.touched">
+          <div *ngIf="userForm.get('date')?.hasError('required')">Date of Birth is required.</div>
+          <div *ngIf="userForm.get('date')?.hasError('futureDate')">Date of Birth cannot be in the future.</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="address">Address</label>
         <input type="text" class="form-control" id="address" formControlName="address" />
+        <div *ngIf="userForm.get('address')?.errors && userForm.get('address')?.touched">
+          <div *ngIf="userForm.get('address')?.hasError('maxlength')">Address cannot exceed 100 characters.</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="phone">Phone Number</label>
-        <input type="tel" class="form-control" id="phone" formControlName="phone" />
+        <input type="tel" class="form-control" id="phone" formControlName="phone" formControlName="phone" (input)="formatPhoneNumber($event)" (keypress)="allowOnlyNumbers($event)" />
         <div *ngIf="userForm.get('phone')?.errors && userForm.get('phone')?.touched">
           <div *ngIf="userForm.get('phone')?.hasError('invalidPhone')">Invalid phone number format. Use (123) 456-7890.</div>
         </div>
@@ -35,6 +54,8 @@
           <input type="password" class="form-control" id="password" formControlName="password" />
           <div *ngIf="userForm.get('passwordGroup.password')?.errors && userForm.get('passwordGroup.password')?.touched">
             <div *ngIf="userForm.get('passwordGroup.password')?.hasError('required')">Password is required.</div>
+            <div *ngIf="userForm.get('passwordGroup.password')?.hasError('invalidPassword')">Password must contain at least one uppercase letter, one number, and one special character (? ! &#64; # $ % ^ & *).</div>
+            <div *ngIf="userForm.get('passwordGroup.password')?.hasError('minlength')">Password must be at least 15 characters long.</div>
           </div>
         </div>
     

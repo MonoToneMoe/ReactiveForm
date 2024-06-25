@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ViewsModule } from './views/views.module';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,8 @@ import { ViewsModule } from './views/views.module';
 })
 export class AppComponent {
   title = 'ReactiveForm';
+
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }
