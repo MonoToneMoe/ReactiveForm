@@ -1,19 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators, FormBuilder } from '@angular/forms';
+import { initFlowbite } from 'flowbite';
 
 function dateValidator(control: FormControl): { [key: string]: boolean } | null {
-  // Get today's date
   const today = new Date();
 
-  // Selected date from form control
   const selectedDate = new Date(control.value);
 
   // Compare dates
   if (selectedDate > today) {
-    return { 'futureDate': true }; // Return validation error if date is in future
+    return { 'futureDate': true };
   }
-  return null; // No validation error
+  return null;
 }
 
 function phoneValidator(control: any): { [key: string]: boolean } | null {
@@ -36,11 +35,10 @@ function passwordMatchValidator(control: FormGroup): ValidationErrors | null {
   const password = control.get('password');
   const confirmPassword = control.get('confirmPassword');
 
-  // Check if passwords are not null and if they match
   if (password && confirmPassword && password.value !== confirmPassword.value) {
-    return { 'passwordMismatch': true }; // Return validation error if passwords do not match
+    return { 'passwordMismatch': true };
   }
-  return null; // No validation error
+  return null;
 }
 
 
@@ -93,7 +91,7 @@ export class UserFormComponent implements OnInit {
     const inputChar = String.fromCharCode(event.charCode);
 
     if (!pattern.test(inputChar)) {
-      event.preventDefault(); // Prevents input if not a number
+      event.preventDefault();
     }
   }
 
@@ -101,8 +99,8 @@ export class UserFormComponent implements OnInit {
     if(this.userForm.invalid) {
       alert('Fix errors on form');
     } else {
-      alert('Succesful!');
-       console.log(this.userForm.value);
+      alert('Success');
+        console.log(this.userForm.value);
       this.userForm.reset();
     }
   }
