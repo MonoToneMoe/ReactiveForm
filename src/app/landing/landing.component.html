@@ -1,0 +1,153 @@
+<!-- <div class="flex flex-col items-center">
+
+    <fieldset>
+  
+      <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="shadow-2xl rounded-md px-8 py-4 bg-white w-fit mt-8">
+  
+        <legend class="font-bold text-2xl">User Form</legend>
+        <div class="form-group max-w-96 relative mt-3">
+          <input type="text"
+            class="form-control block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " id="fName" formControlName="fName" />
+          <label for="fName"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">First
+            Name</label>
+        </div>
+        <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+          *ngIf="userForm.get('fName')?.errors && userForm.get('fName')?.touched">
+          <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('fName')?.hasError('required')">First
+            Name is required.</div>
+          <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('fName')?.hasError('maxlength')">First
+            Name cannot exceed 100 characters.</div>
+        </div>
+  
+        <div class="form-group max-w-96 relative mt-3">
+          <input type="text"
+            class="form-control block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " id="lName" formControlName="lName" />
+          <label for="lName"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Last
+            Name</label>
+        </div>
+        <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+          *ngIf="userForm.get('lName')?.errors && userForm.get('lName')?.touched">
+          <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('lName')?.hasError('required')">Last
+            Name is required.</div>
+          <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('lName')?.hasError('maxlength')">Last
+            Name cannot exceed 100 characters.</div>
+        </div>
+  
+        <div class="form-group max-w-96 relative mt-3">
+          <input type="text"
+            class="form-control block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " id="email" formControlName="email" />
+          <label for="email"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Email</label>
+        </div>
+        <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+          *ngIf="userForm.get('email')?.errors && userForm.get('email')?.touched">
+          <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('email')?.hasError('required')">Email
+            is required.</div>
+          <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('email')?.hasError('email')">Invalid
+            email format.</div>
+        </div>
+  
+        <div class="form-group max-w-96 relative mt-3">
+          <input type="date"
+            class="form-control block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " id="date" formControlName="date" />
+          <label for="date"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date
+            of Birth</label>
+        </div>
+        <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+          *ngIf="userForm.get('date')?.errors && userForm.get('date')?.touched">
+          <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('date')?.hasError('required')">Date of
+            Birth is required.</div>
+          <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('date')?.hasError('futureDate')">Date
+            of Birth cannot be in the future.</div>
+        </div>
+  
+        <div class="form-group max-w-96 relative mt-3">
+          <input type="text"
+            class="form-control block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            id="address block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " formControlName="address" />
+          <label for="address"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Address</label>
+        </div>
+        <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+          *ngIf="userForm.get('address')?.errors && userForm.get('address')?.touched">
+          <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('address')?.hasError('maxlength')">
+            Address cannot exceed 100 characters.</div>
+        </div>
+  
+        <div class="form-group max-w-96 mt-3 relative">
+          <input type="tel"
+            class="form-control block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " id="phone" formControlName="phone" formControlName="phone" (input)="formatPhoneNumber($event)"
+            (keypress)="allowOnlyNumbers($event)" />
+          <label for="phone"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Phone
+            Number</label>
+        </div>
+        <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+          *ngIf="userForm.get('phone')?.errors && userForm.get('phone')?.touched">
+          <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('phone')?.hasError('invalidPhone')">
+            Invalid phone number format. Use (123) 456-7890.</div>
+        </div>
+  
+        <div formGroupName="passwordGroup">
+  
+          <div class="form-group max-w-96 mt-3 relative">
+            <input type="password"
+              class="form-control block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" " id="password" formControlName="password" />
+            <label for="password"
+              class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
+          </div>
+          <div class="max-w-96">
+            <div class="text-sm text-gray-500 dark:text-gray-400">Password must be at least 15 characters long, contain at
+              least one uppercase letter, one number, and one special character (? ! &#64; # $ % ^ & *).</div>
+          </div>
+          <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+            *ngIf="userForm.get('passwordGroup.password')?.errors && userForm.get('passwordGroup.password')?.touched">
+            <div class="text-sm text-gray-500 dark:text-gray-400"
+              *ngIf="userForm.get('passwordGroup.password')?.hasError('required')">Password is required.</div>
+          </div>
+  
+          <div class="form-group max-w-96 mt-3 relative">
+            <input type="password"
+              class="form-control block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" " id="confirmPassword" formControlName="confirmPassword" />
+            <label for="confirmPassword"
+              class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Confirm
+              Password</label>
+          </div>
+          <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+            *ngIf="userForm.get('passwordGroup.confirmPassword')?.errors && userForm.get('passwordGroup.confirmPassword')?.touched">
+            <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.hasError('passwordMismatch')">Passwords
+              do not match.</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400"
+              *ngIf="userForm.get('passwordGroup.confirmPassword')?.hasError('required')">Confirm Password is required.
+            </div>
+          </div>
+  
+        </div>
+        <div class="w-full flex justify-end">
+          <button type="submit"
+            class="btn btn-primary mt-4 border-2 p-3 bg-blue-600 text-white rounded-lg font-semibold">Submit</button>
+        </div>
+  
+      </form>
+  
+    </fieldset>
+  
+    <div>
+      <button>
+        <a href="../landing/landing.component.html">CLick ME PLEASEEEEE</a>
+      </button>
+    </div>
+  
+  </div> -->
