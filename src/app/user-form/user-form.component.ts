@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators, FormBuilder } from '@angular/forms';
-import { response } from 'express';
 import { initFlowbite } from 'flowbite';
 import { IGetAllUsers } from '../interfaces';
 import { error } from 'console';
