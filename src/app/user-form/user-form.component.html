@@ -13,11 +13,11 @@
           class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">First
           Name</label>
       </div>
-      <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+      <div class="mt-1 max-w-96 text-wrap text-sm text-red-500"
         *ngIf="userForm.get('fName')?.errors && userForm.get('fName')?.touched">
-        <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('fName')?.hasError('required')">First
+        <div class="text-sm text-red-500" *ngIf="userForm.get('fName')?.hasError('required')">First
           Name is required.</div>
-        <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('fName')?.hasError('maxlength')">First
+        <div class="text-sm text-red-500" *ngIf="userForm.get('fName')?.hasError('maxlength')">First
           Name cannot exceed 100 characters.</div>
       </div>
 
@@ -29,11 +29,11 @@
           class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Last
           Name</label>
       </div>
-      <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+      <div class="mt-1 max-w-96 text-wrap text-sm text-red-500"
         *ngIf="userForm.get('lName')?.errors && userForm.get('lName')?.touched">
-        <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('lName')?.hasError('required')">Last
+        <div class="text-sm text-red-500" *ngIf="userForm.get('lName')?.hasError('required')">Last
           Name is required.</div>
-        <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('lName')?.hasError('maxlength')">Last
+        <div class="text-sm text-red-500" *ngIf="userForm.get('lName')?.hasError('maxlength')">Last
           Name cannot exceed 100 characters.</div>
       </div>
 
@@ -44,11 +44,11 @@
         <label for="email"
           class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Email</label>
       </div>
-      <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+      <div class="mt-1 max-w-96 text-wrap text-sm text-red-500"
         *ngIf="userForm.get('email')?.errors && userForm.get('email')?.touched">
-        <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('email')?.hasError('required')">Email
+        <div class="text-sm text-red-500" *ngIf="userForm.get('email')?.hasError('required')">Email
           is required.</div>
-        <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('email')?.hasError('email')">Invalid
+        <div class="text-sm text-red-500" *ngIf="userForm.get('email')?.hasError('email')">Invalid
           email format.</div>
       </div>
 
@@ -60,11 +60,11 @@
           class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date
           of Birth</label>
       </div>
-      <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+      <div class="mt-1 max-w-96 text-wrap text-sm text-red-500"
         *ngIf="userForm.get('date')?.errors && userForm.get('date')?.touched">
-        <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('date')?.hasError('required')">Date of
+        <div class="text-sm text-red-500" *ngIf="userForm.get('date')?.hasError('required')">Date of
           Birth is required.</div>
-        <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('date')?.hasError('futureDate')">Date
+        <div class="text-sm text-red-500" *ngIf="userForm.get('date')?.hasError('futureDate')">Date
           of Birth cannot be in the future.</div>
       </div>
 
@@ -77,9 +77,9 @@
         <label for="address"
           class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Address</label>
       </div>
-      <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+      <div class="mt-1 max-w-96 text-wrap text-sm text-red-500"
         *ngIf="userForm.get('address')?.errors && userForm.get('address')?.touched">
-        <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('address')?.hasError('maxlength')">
+        <div class="text-sm text-red-500" *ngIf="userForm.get('address')?.hasError('maxlength')">
           Address cannot exceed 100 characters.</div>
       </div>
 
@@ -92,9 +92,9 @@
           class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Phone
           Number</label>
       </div>
-      <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+      <div class="mt-1 max-w-96 text-wrap text-sm text-red-500"
         *ngIf="userForm.get('phone')?.errors && userForm.get('phone')?.touched">
-        <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.get('phone')?.hasError('invalidPhone')">
+        <div class="text-sm text-red-500" *ngIf="userForm.get('phone')?.hasError('invalidPhone')">
           Invalid phone number format. Use (123) 456-7890.</div>
       </div>
 
@@ -108,12 +108,12 @@
             class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
         </div>
         <div class="max-w-96">
-          <div class="text-sm text-gray-500 dark:text-gray-400">Password must be at least 15 characters long, contain at
+          <div class="text-sm text-gray-500">Password must be at least 15 characters long, contain at
             least one uppercase letter, one number, and one special character (? ! &#64; # $ % ^ & *).</div>
         </div>
-        <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+        <div class="mt-1 max-w-96 text-wrap text-sm text-red-500"
           *ngIf="userForm.get('passwordGroup.password')?.errors && userForm.get('passwordGroup.password')?.touched">
-          <div class="text-sm text-gray-500 dark:text-gray-400"
+          <div class="text-sm text-red-500"
             *ngIf="userForm.get('passwordGroup.password')?.hasError('required')">Password is required.</div>
         </div>
 
@@ -125,19 +125,17 @@
             class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Confirm
             Password</label>
         </div>
-        <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+        <div class="mt-1 max-w-96 text-wrap text-sm text-red-500"
           *ngIf="userForm.get('passwordGroup.confirmPassword')?.errors && userForm.get('passwordGroup.confirmPassword')?.touched">
-          <div class="text-sm text-gray-500 dark:text-gray-400" *ngIf="userForm.hasError('passwordMismatch')">Passwords
+          <div class="text-sm text-red-500" *ngIf="userForm.hasError('passwordMismatch')">Passwords
             do not match.</div>
-          <div class="text-sm text-gray-500 dark:text-gray-400"
+          <div class="text-sm text-red-500"
             *ngIf="userForm.get('passwordGroup.confirmPassword')?.hasError('required')">Confirm Password is required.
           </div>
         </div>
 
       </div>
-      <div>
-        <input type="checkbox" class="form-control" formControlName="isAdmin" name="" id="">
-      </div>
+      
       <div class="w-full flex justify-end">
         <button type="submit"
           class="btn btn-primary mt-4 border-2 p-3 bg-blue-600 text-white rounded-lg font-semibold">Submit</button>
