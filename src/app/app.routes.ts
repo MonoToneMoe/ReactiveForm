@@ -11,6 +11,8 @@ export const routes: Routes = [
     { path: '', redirectTo: 'userform', pathMatch: 'full' },
     { path: 'userform', component: UserFormComponent },
     { path: 'signup', component: RegistrationComponent },
+    { path: '', redirectTo: 'user-form', pathMatch: 'full' },
+    { path: 'user-form', component: UserFormComponent },
     { path: 'login', component: LoginComponent },
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'student-directory', component: StudentDirectoryComponent },
