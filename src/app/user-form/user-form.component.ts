@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators, FormBuilder } from '@angular/forms';
+import { response } from 'express';
 import { initFlowbite } from 'flowbite';
+import { IGetAllUsers } from '../interfaces';
+import { error } from 'console';
+import { DataService } from '../data.service';
+import { RouterOutlet } from '@angular/router';
 
 function dateValidator(control: FormControl): { [key: string]: boolean } | null {
   const today = new Date();
@@ -45,14 +50,17 @@ function passwordMatchValidator(control: FormGroup): ValidationErrors | null {
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterOutlet],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.css'
 })
 export class UserFormComponent implements OnInit {
-
+  fetchData: IGetAllUsers[] | undefined;
   userForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  showToast: boolean = false;
+  toastMessage: string = '';
+  isError: boolean = false;
+  constructor(private formBuilder: FormBuilder, private dataService: DataService) { }
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -95,13 +103,39 @@ export class UserFormComponent implements OnInit {
     }
   }
 
+  private markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach((control: AbstractControl) => {
+      control.markAsTouched();
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
+
   submitForm() {
-    if(this.userForm.invalid) {
-      alert('Fix errors on form');
+    if (this.userForm.invalid) {
+      this.markFormGroupTouched(this.userForm);
+      this.toastMessage = 'Fix errors on form';
+      this.isError = true;
+      this.showToast = true;
+      setTimeout(() => this.showToast = false, 3000);
     } else {
-      alert('Success');
-        console.log(this.userForm.value);
-      this.userForm.reset();
+      this.dataService.AddUser(this.userForm.value).subscribe(
+        response => {
+          this.toastMessage = 'Message sent successfully.';
+          this.isError = false;
+          this.showToast = true;
+          setTimeout(() => this.showToast = false, 3000);
+          this.userForm.reset();
+        },
+        error => {
+          this.toastMessage = 'Error sending message.';
+          this.isError = true;
+          this.showToast = true;
+          setTimeout(() => this.showToast = false, 3000);
+          console.error('Error:', error);
+        }
+      );
     }
   }
 }
