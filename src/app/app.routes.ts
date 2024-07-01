@@ -7,8 +7,8 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { NavbarComponent } from './navbar/navbar.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'userform', pathMatch: 'full' },
-    { path: 'userform', component: UserFormComponent },
+    { path: '', redirectTo: 'user-form', pathMatch: 'full' },
+    { path: 'user-form', component: UserFormComponent },
     { path: 'login', component: LoginComponent },
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'student-directory', component: StudentDirectoryComponent },
