@@ -35,7 +35,7 @@ export class DataService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post<IAddForm>(`${this.apiUrl}/Form/AddUser`, data, httpOptions)
+    return this.http.post<IAddForm>(`${this.apiUrl}/Form/AddForm`, data, httpOptions)
   }
 
   FilterByFirstName(): Observable<IFormUser[]> {
