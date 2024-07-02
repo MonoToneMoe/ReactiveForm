@@ -6,7 +6,7 @@ import { StudentDirectoryComponent } from './student-directory/student-directory
 import { UserManagementComponent } from './user-management/user-management.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'userform', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'userform', component: UserFormComponent },
     { path: 'login', component: LoginComponent },
     { path: 'reset-password', component: ResetPasswordComponent },
