@@ -64,3 +64,13 @@ export interface IEditUser {
 export interface IDelete {
     id: number
 }
+
+export interface Student {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    dob: string;
+    address: string;
+    phone: string;
+}

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs';
 import { throwError } from 'rxjs';
 import { IAddForm, IAddUser, IDelete, IEditUser, IFormUser, IGetAllFormUsers, IGetAllUsers, ILogin, IResetPassword } from './interfaces';
+import { Student } from './interfaces';
 
 
 @Injectable({
@@ -14,6 +15,12 @@ export class DataService {
   private apiUrl = "https://formdatabase.azurewebsites.net"
 
   constructor(private http: HttpClient) { }
+
+  getStudentData() {
+    let data = this.http.get<Student[]>(`https://formdatabase.azurewebsites.net/Form/GetAllForms`);
+    console.log(data)
+    return data;
+  }
 
   GetAllForms(): Observable<IGetAllFormUsers[]> {
     return this.http.get<IGetAllFormUsers[]>(`${this.apiUrl}/Form/GetAllForms`)
