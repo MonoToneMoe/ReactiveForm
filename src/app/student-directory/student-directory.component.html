@@ -17,6 +17,9 @@
                         D.O.B.
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Address
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Phone Number
                     </th>
                 </tr>
@@ -24,9 +27,9 @@
             <tbody>
                 @for (person of studentList ; track person.id) {
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <td class="px-6 py-4">
                             {{person.firstName}}
-                        </th>
+                        </td>
                         <td class="px-6 py-4">
                             {{person.lastName}}
                         </td>
