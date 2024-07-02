@@ -8,12 +8,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RegistrationComponent } from './registration/registration.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'userform', pathMatch: 'full' },
-    { path: 'userform', component: UserFormComponent },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'user-form', component: UserFormComponent },
     { path: 'signup', component: RegistrationComponent },
     { path: 'login', component: LoginComponent },
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'student-directory', component: StudentDirectoryComponent },
     { path: 'user-management', component: UserManagementComponent },
-    { path: 'navbar', component: NavbarComponent },
   ];
