@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate([`/reset-password`]);
   }
 
+
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       userName: [''],
@@ -28,13 +29,14 @@ export class LoginComponent implements OnInit {
     });
   };
 
-  submitForm() {
+  Login() {
     if(this.loginForm.invalid) {
       alert('Fix errors on form');
     } else {
       alert('Success');
         console.log(this.loginForm.value);
       this.loginForm.reset();
+      this.router.navigate([`/user-form`]);
     }
   }
 

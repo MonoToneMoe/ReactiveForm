@@ -1,1 +1,90 @@
-<p>student-directory works!</p>
+<!-- <table className="border border-black">
+  <thead className="text-white text-2xl bg-slate-500 gap-2  ">
+    <tr>
+      <th className="my-4 font-normal">First Name</th>
+      <td>Last Name</td>
+      <td>Date of Birth</td>
+      <td>Address</td>
+      <td>Email</td>
+      <td>Phone</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className=" ">
+      <td className="px-2 w-">Marcos</td>
+      <td className="px-2 w-48">Rodriguez</td>
+      <td className="px-2 w-48">9/11/2001</td>
+      <td className="px-2 w-48">2922 Transworld Dr</td>
+      <td className="px-2 w-"></td>
+      <td className="px-2 w-48">(911) 911- 9111</td>
+      <td className="flex flex-row items-center p-2 gap-2">
+      </td>
+    </tr>
+    <tr className="  bg-gray-300">
+      <td className="px-2 ">Xavier</td>
+      <td className="  px-2">Hopkins</td>
+      <td className="  px-2">4/20/2003</td>
+      <td className="  px-2">2922 Transworld Dr</td>
+      <td className="  px-2"></td>
+      <td className="  px-2">(911) 911- 9111</td>
+      <td className="flex flex-row items-center p-2 gap-2">
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+<app-navbar/>
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    First Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Last Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Email
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    D.O.B.
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Phone Number
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- @for (person of studentList ; track person.ID) {
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{person.FirstName}}
+                </th>
+                <td class="px-6 py-4">
+                    {{person.LastName}}
+                </td>
+                <td class="px-6 py-4">
+                    {{person.Email}}
+                </td>
+                <td class="px-6 py-4">
+                    {{person.DOB}}
+                </td>
+                <td class="px-6 py-4">
+                    {{person.Address}}
+                </td>
+                <td class="px-6 py-4">
+                    {{person.Phone}}
+                </td>
+            </tr>
+            } -->
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td className="px-2 ">Xavier</td>
+                <td className="  px-2">Hopkins</td>
+                <td className="  px-2">4/20/2003</td>
+                <td className="  px-2">2922 Transworld Dr</td>
+                <td className="  px-2">(209) 911-4200</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
