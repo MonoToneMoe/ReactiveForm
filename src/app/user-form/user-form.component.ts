@@ -1,12 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators, FormBuilder } from '@angular/forms';
-import { initFlowbite } from 'flowbite';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { IGetAllUsers } from '../interfaces';
-import { error } from 'console';
 import { DataService } from '../data.service';
-import { RouterOutlet } from '@angular/router';
 
 function dateValidator(control: FormControl): { [key: string]: boolean } | null {
   const today = new Date();

@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     UserFormComponent,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ViewsModule { }
