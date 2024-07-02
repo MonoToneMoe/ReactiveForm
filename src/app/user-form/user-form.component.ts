@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators, FormBuilder } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { IGetAllUsers } from '../interfaces';
+import { IGetAllFormUsers } from '../interfaces';
 import { DataService } from '../data.service';
 
 function dateValidator(control: FormControl): { [key: string]: boolean } | null {
@@ -52,7 +52,6 @@ function passwordMatchValidator(control: FormGroup): ValidationErrors | null {
   styleUrl: './user-form.component.css'
 })
 export class UserFormComponent implements OnInit {
-  fetchData: IGetAllUsers[] | undefined;
   userForm!: FormGroup;
   showToast: boolean = false;
   toastMessage: string = '';
@@ -64,7 +63,7 @@ export class UserFormComponent implements OnInit {
       fName: ['', [Validators.required, Validators.maxLength(100)]],
       lName: ['', [Validators.required, Validators.maxLength(100)]],
       email: ['', [Validators.required, Validators.email]],
-      date: ['', [Validators.required, dateValidator]],
+      dob: ['', [Validators.required, dateValidator]],
       address: ['', Validators.maxLength(100)],
       phone: ['', phoneValidator],
       passwordGroup: this.formBuilder.group({
@@ -117,7 +116,7 @@ export class UserFormComponent implements OnInit {
       this.showToast = true;
       setTimeout(() => this.showToast = false, 3000);
     } else {
-      this.dataService.AddUser(this.userForm.value).subscribe(
+      this.dataService.AddForm(this.userForm.value).subscribe(
         response => {
           this.toastMessage = 'Message sent successfully.';
           this.isError = false;
