@@ -3,7 +3,6 @@ export interface IAddForm {
     lastName: string
     dob: string
     email: string
-    password: string
     phoneNumber: string
     address: string
     isAdmin: boolean
@@ -15,7 +14,6 @@ export interface IGetAllFormUsers {
     lastName: string
     dob: string
     email: string
-    password: string
     phoneNumber: string
     address: string
 }

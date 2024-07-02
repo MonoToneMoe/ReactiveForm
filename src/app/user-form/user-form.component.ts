@@ -25,25 +25,6 @@ function phoneValidator(control: any): { [key: string]: boolean } | null {
   return null;
 }
 
-function passwordValidator(control: FormControl): { [key: string]: boolean } | null {
-  const PASSWORD_REGEX = /^(?=.*[A-Z])(?=.*\d)(?=.*[?!@#$%^&*])[A-Za-z\d?!@#$%^&*]{15,}$/;
-  if (!PASSWORD_REGEX.test(control.value)) {
-    return { 'invalidPassword': true };
-  }
-  return null;
-}
-
-function passwordMatchValidator(control: FormGroup): ValidationErrors | null {
-  const password = control.get('password');
-  const confirmPassword = control.get('confirmPassword');
-
-  if (password && confirmPassword && password.value !== confirmPassword.value) {
-    return { 'passwordMismatch': true };
-  }
-  return null;
-}
-
-
 @Component({
   selector: 'app-user-form',
   standalone: true,
@@ -66,10 +47,6 @@ export class UserFormComponent implements OnInit {
       dob: ['', [Validators.required, dateValidator]],
       address: ['', Validators.maxLength(100)],
       phone: ['', phoneValidator],
-      passwordGroup: this.formBuilder.group({
-        password: ['', Validators.required, Validators.minLength(15), passwordValidator],
-        confirmPassword: ['', Validators.required]
-      }, { validator: passwordMatchValidator })
     });
   };
 
