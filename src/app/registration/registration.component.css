@@ -1,0 +1,8 @@
+.form-group.relative input {
+    z-index: 1;
+  }
+  
+  .form-group.relative label {
+    z-index: 0;
+    pointer-events: none;
+  }

@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
+import { response } from 'express';
+import { error } from 'console';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -13,8 +16,11 @@ import { DataService } from '../data.service';
 export class RegistrationComponent implements OnInit {
 
   signupForm!: FormGroup
+  showToast: boolean = false;
+  toastMessage: string = '';
+  isError: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private dataService: DataService) { }
+  constructor(private formBuilder: FormBuilder, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -24,13 +30,43 @@ export class RegistrationComponent implements OnInit {
         password: ['', Validators.required, Validators.minLength(15), passwordValidator],
         confirmPassword: ['', Validators.required]
       }, { validator: passwordMatchValidator }),
-      address: ['', [Validators.maxLength(100)]],
-      phoneNumber: ['', [phoneValidator]],
-      firstname: ['', [Validators.required, Validators.maxLength(100)]],
-      lastName: ['', [Validators.required, Validators.maxLength(100)]],
-      birthDay: ['', [Validators.required, dateValidator]],
       isAdmin: [false]
     })
+  }
+  private markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach((control: AbstractControl) => {
+      control.markAsTouched();
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
+  submitForm() {
+    if(this.signupForm.invalid){
+      this.markFormGroupTouched(this.signupForm);
+      this.toastMessage = 'Fix errors on form';
+      this.isError = true;
+      this.showToast = true;
+      setTimeout(() => this.showToast = false, 3000);
+    } else {
+      this.dataService.AddUser(this.signupForm.value).subscribe(
+        response => {
+          this.toastMessage = 'Account created.';
+          this.isError = false;
+          this.showToast = true;
+          setTimeout(() => this.showToast = false, 3000);
+          this.signupForm.reset
+          this.router.navigate(['/login'])
+        },
+        error => {
+          this.toastMessage = 'Error sending message.';
+          this.isError = true;
+          this.showToast = true;
+          setTimeout(() => this.showToast = false, 3000);
+          console.error('Error:', error);
+        }
+      )
+    }
   }
 }
 
@@ -47,25 +83,6 @@ function passwordMatchValidator(control: FormGroup): ValidationErrors | null {
 
   if (password && confirmPassword && password.value !== confirmPassword.value) {
     return { 'passwordMismatch': true };
-  }
-  return null;
-}
-function phoneValidator(control: any): { [key: string]: boolean } | null {
-  const PHONE_REGEX = /^\(\d{3}\) \d{3}-\d{4}$/;
-  if (!PHONE_REGEX.test(control.value)) {
-    return { 'invalidPhone': true };
-  }
-  return null;
-}
-
-function dateValidator(control: FormControl): { [key: string]: boolean } | null {
-  const today = new Date();
-
-  const selectedDate = new Date(control.value);
-
-  // Compare dates
-  if (selectedDate > today) {
-    return { 'futureDate': true };
   }
   return null;
 }
