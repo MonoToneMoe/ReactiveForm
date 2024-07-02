@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs';
 import { throwError } from 'rxjs';
-import { IAddUser, IGetAllUsers } from './interfaces';
+import { IAddUser, IGetAllUsers, Student } from './interfaces';
 
 
 @Injectable({
@@ -14,6 +14,12 @@ export class DataService {
   private apiUrl = "https://formassignmentbackend.azurewebsites.net"
 
   constructor(private http: HttpClient) { }
+
+  getStudentData() {
+    let data = this.http.get<Student[]>(`https://formdatabase.azurewebsites.net/Form/GetAllForms`);
+    console.log(data)
+    return data;
+  }
 
   getAllUsers(): Observable<IGetAllUsers[]> {
     return this.http.get<IGetAllUsers[]>(`${this.apiUrl}/User/GetAllUsers`)
