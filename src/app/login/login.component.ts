@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       alert('Success');
         console.log(this.loginForm.value);
       this.loginForm.reset();
-      this.router.navigate([`/user-form`]);
+      this.router.navigate([`/userform`]);
     }
   }
 
