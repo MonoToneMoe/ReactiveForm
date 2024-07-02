@@ -14,7 +14,8 @@ import { Student } from '../interfaces';
 export class UserManagementComponent implements OnInit {
 
   dataService = inject(DataService);
-  studentList: Student[] | null = null 
+  studentList: Student[] | null = null;
+  modelOpen: boolean = false
 
 
   loadStudentData() {
@@ -23,6 +24,18 @@ export class UserManagementComponent implements OnInit {
       this.studentList = data;
       console.log(this.studentList)
     });
+  }
+
+  handleDeleteStudent( id:number) {
+
+  }
+
+  handleEditUser( id:number) {
+    this.modelOpen = true;
+  }
+
+  handleCloseModal() {
+    this.modelOpen = false;
   }
 
   ngOnInit() {
