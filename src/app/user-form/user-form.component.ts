@@ -4,6 +4,7 @@ import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validatio
 import { NavbarComponent } from '../navbar/navbar.component';
 import { IGetAllFormUsers } from '../interfaces';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 function dateValidator(control: FormControl): { [key: string]: boolean } | null {
   const today = new Date();
@@ -37,9 +38,14 @@ export class UserFormComponent implements OnInit {
   showToast: boolean = false;
   toastMessage: string = '';
   isError: boolean = false;
-  constructor(private formBuilder: FormBuilder, private dataService: DataService) { }
+  constructor(private formBuilder: FormBuilder, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
+    const token = localStorage.getItem('Token');
+    if (!token) {
+      // Navigate to a different route if the user is already logged in
+      this.router.navigate(['/login']);
+    }
     this.userForm = this.formBuilder.group({
       fName: ['', [Validators.required, Validators.maxLength(100)]],
       lName: ['', [Validators.required, Validators.maxLength(100)]],

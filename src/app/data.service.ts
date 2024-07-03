@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { catchError } from 'rxjs';
 import { throwError } from 'rxjs';
-import { IAddForm, IAddUser, IDelete, IEditUser, IFormUser, IGetAllFormUsers, IGetAllUsers, ILogin, IResetPassword } from './interfaces';
+import { IAddForm, IAddUser, IDelete, IEditUser, IFormUser, IGetAllFormUsers, IGetAllUsers, ILogin, IResetPassword, IToken } from './interfaces';
 import { Student } from './interfaces';
 
 
@@ -67,13 +67,21 @@ export class DataService {
     return this.http.post<IAddUser>(`${this.apiUrl}/User/AddUser`, data, httpOptions)
   }
 
-  Login(data: ILogin): Observable<ILogin> {
+  Login(data: ILogin): Observable<IToken> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post<ILogin>(`${this.apiUrl}/User/Login`, data, httpOptions)
+    return this.http.post<any>(`${this.apiUrl}/User/Login`, data, httpOptions).pipe(
+      tap(response => {
+        // Assuming the token is in the response and is named 'token'
+        const token = response.token;
+        if (token) {
+          localStorage.setItem('Token', token);
+        }
+      })
+    );
   }
 
   GetAllUsers(): Observable<IGetAllUsers[]> {

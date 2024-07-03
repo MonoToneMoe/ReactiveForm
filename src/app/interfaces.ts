@@ -35,7 +35,6 @@ export interface IGetAllUsers {
 }
 
 export interface IAddUser {
-    id: number
     email: string
     password: string
     isAdmin: boolean

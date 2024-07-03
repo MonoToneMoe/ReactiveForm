@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
-import { response } from 'express';
-import { error } from 'console';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,24 +13,29 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  signupForm!: FormGroup
+  signupForm!: FormGroup;
   showToast: boolean = false;
   toastMessage: string = '';
   isError: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private dataService: DataService, private router: Router) { }
 
+  navigateToLogin(): void {
+    this.router.navigate([`/login`]);
+  }
+
   ngOnInit() {
+
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(15), passwordValidator]],
       passwordGroup: this.formBuilder.group({
-        password: ['', Validators.required, Validators.minLength(15), passwordValidator],
+        password: ['', [Validators.required, Validators.minLength(15), passwordValidator]],
         confirmPassword: ['', Validators.required]
       }, { validator: passwordMatchValidator }),
       isAdmin: [false]
-    })
+    });
   }
+
   private markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach((control: AbstractControl) => {
       control.markAsTouched();
@@ -41,31 +44,38 @@ export class RegistrationComponent implements OnInit {
       }
     });
   }
+
   submitForm() {
-    if(this.signupForm.invalid){
+    if (this.signupForm.invalid) {
       this.markFormGroupTouched(this.signupForm);
       this.toastMessage = 'Fix errors on form';
       this.isError = true;
       this.showToast = true;
       setTimeout(() => this.showToast = false, 3000);
     } else {
-      this.dataService.AddUser(this.signupForm.value).subscribe(
+      const data = {
+        id: 0,
+        email: this.signupForm.get('email')?.value,
+        password: this.signupForm.get('passwordGroup.password')?.value,
+        isAdmin: this.signupForm.get('isAdmin')?.value,
+        firstName: null,
+        lastName: null,
+        dob: null
+      }
+      console.log(data)
+      this.dataService.AddUser(data).subscribe(
         response => {
           this.toastMessage = 'Account created.';
           this.isError = false;
           this.showToast = true;
           setTimeout(() => this.showToast = false, 3000);
-          this.signupForm.reset
-          this.router.navigate(['/login'])
+          this.signupForm.reset();
+          this.router.navigate(['/login']);
         },
         error => {
-          this.toastMessage = 'Error sending message.';
-          this.isError = true;
-          this.showToast = true;
-          setTimeout(() => this.showToast = false, 3000);
-          console.error('Error:', error);
+          this.router.navigate(['/login']);
         }
-      )
+      );
     }
   }
 }
@@ -77,6 +87,7 @@ function passwordValidator(control: FormControl): { [key: string]: boolean } | n
   }
   return null;
 }
+
 function passwordMatchValidator(control: FormGroup): ValidationErrors | null {
   const password = control.get('password');
   const confirmPassword = control.get('confirmPassword');

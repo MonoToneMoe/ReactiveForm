@@ -2,7 +2,7 @@
 
     <fieldset>
 
-        <form [formGroup]="signupForm" action="" class="shadow-2xl rounded-md px-8 py-4 bg-white w-fit mt-8">
+        <form [formGroup]="signupForm" (ngSubmit)="submitForm()" class="shadow-2xl rounded-md px-8 py-4 bg-white w-fit mt-8">
 
             <legend class="font-bold text-2xl">Sign up</legend>
 
@@ -65,6 +65,10 @@
                 <p>Are you an Admin?</p>
                 <input id="isAdmin" formControlName="isAdmin" type="checkbox">
             </div>
+
+            <span class="text-sm w-full pt-2 ps-2 flex">
+                Already have an account click <p (click)="navigateToLogin()" class="pl-1 text-blue-600 underline text-sm cursor-pointer">here</p>.
+            </span>
 
             <div class="w-full flex justify-end">
                 <button type="submit" class="btn btn-primary mt-4 border-2 p-3 bg-blue-600 text-white rounded-lg font-semibold">Submit</button>

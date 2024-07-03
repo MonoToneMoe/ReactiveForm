@@ -2,7 +2,7 @@
 
     <fieldset>
 
-        <form [formGroup]="loginForm" (ngSubmit)="Login()"
+        <form [formGroup]="loginForm" (ngSubmit)="submitLogin()"
             class="shadow-2xl rounded-md px-8 py-4 bg-white w-64 md:w-96 mt-8">
 
             <legend class="font-bold text-2xl">Login</legend>
@@ -12,14 +12,14 @@
                     placeholder=" " id="userName" formControlName="userName" />
                 <label for="userName"
                     class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                    UserName</label>
+                    Email</label>
             </div>
-            <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+            <div class="mt-1 max-w-96 text-wrap text-sm text-red-500"
                 *ngIf="loginForm.get('userName')?.errors && loginForm.get('userName')?.touched">
-                <div class="text-sm text-gray-500 dark:text-gray-400"
+                <div class="text-sm text-red-500"
                     *ngIf="loginForm.get('userName')?.hasError('required')">First
-                    UserName is required.</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400"
+                    Email is required.</div>
+                <div class="text-sm text-red-500"
                     *ngIf="loginForm.get('userName')?.hasError('maxlength')">Username does not exist.</div>
             </div>
 
@@ -32,12 +32,12 @@
                 <label for="password"
                     class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
             </div>
-            <div class="mt-1 max-w-96 text-wrap text-sm text-gray-500 dark:text-gray-400"
+            <div class="mt-1 max-w-96 text-wrap text-sm text-red-500"
                 *ngIf="loginForm.get('passwordGroup.password')?.errors && loginForm.get('passwordGroup.password')?.touched">
-                <div class="text-sm text-gray-500 dark:text-gray-400"
+                <div class="text-sm text-red-500"
                     *ngIf="loginForm.get('passwordGroup.password')?.hasError('required')">Password is required.
                 </div>
-                <div class="text-sm text-gray-500 dark:text-gray-400"
+                <div class="text-sm text-red-500"
                     *ngIf="loginForm.get('passwordGroup.password')?.hasError('required')">Password is incorrect
                 </div>
             </div>
@@ -45,6 +45,9 @@
             <div (click)="navigateToResetPassword()" class=" text-blue-600 underline text-sm w-full pt-2 ps-2 cursor-pointer">
                 Reset Password
             </div>
+            <span class="text-sm w-full pt-2 ps-2 flex">
+                Don't have an account click <p (click)="navigateToSignUp()" class="pl-1 text-blue-600 underline text-sm cursor-pointer">here</p>.
+            </span>
 
 
             <div class="w-full flex justify-end">
@@ -56,4 +59,9 @@
 
     </fieldset>
 
+</div>
+
+<div *ngIf="showToast" id="toast-simple" 
+     [class]="isError ? 'flex items-center w-full max-w-xs p-4 space-x-4 rtl:space-x-reverse text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800' : 'flex items-center w-full max-w-xs p-4 space-x-4 rtl:space-x-reverse text-white bg-green-500 divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow space-x' " role="alert">
+  <div class="ps-4 text-sm font-normal">{{ toastMessage }}</div>
 </div>
